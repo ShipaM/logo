@@ -1,0 +1,136 @@
+
+@import "config"
+@import "header"
+
+
+//add video
+.embed,
+.fr-video
+    position: relative
+    display: block
+    overflow: hidden
+    &::before
+        content: ''
+        display: block
+        padding-top: 56.25%
+    iframe,
+    video,
+    object,
+    embed
+        width: 100%
+        height: 100%
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 1
+
+// Применение класса "ibg"/////////////////////////////////////////////////////
+.ibg
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+    position: relative
+
+    img
+        width: 0
+        height: 0
+        position: absolute
+        top: 0
+        left: 0
+        opacity: 0
+        visibility: hidden
+        object-fit: cover
+
+// Применение класса "ibg"////////////////////////////////////////////////////////
+
+//.page////////////////////////////////////////////////////////////////////////////
+.page
+    flex: 1 1 auto
+    padding: 160px 0 0 0
+    &__container  //.page__container
+        display: flex
+    &__side //.page__side
+        flex: 0 0 260px
+    &__menu //.page__menu
+        
+    &__content //.page__content
+        flex: 1 1 auto
+        padding: 0 0 0 30px
+
+
+.menu-page
+    background: url('../img/sidebar/sidebar_bg.jpg')top no-repeat
+    &__header //menu-page__header
+        padding: 20px
+        display: flex
+        align-items: center
+    &__title //menu-page__title
+        color: #fff
+        font-family: 'UniSansHeavyCaps'
+        line-height: 35 / 30 * 100%
+        font-size: 30px
+        text-transform: uppercase
+        letter-spacing: 0.75px
+    &__burger //menu-page__burger
+        flex: 0 0 36px
+        width: 36px
+        height: 36px
+        background: #068292
+        display: block
+        position: relative
+        cursor: 
+        z-index: 5
+        padding: 10px 6px
+        &.active
+            span
+                background-color: #fff
+                &:nth-child(1)
+                    transform: rotate(-45deg)
+                    top: 8px
+                &:nth-child(2)
+                    transform: scale(0)
+                &:nth-child(3)
+                transform: rotate(45deg)
+                bottom: 8px
+    &__lines //menu-page__lines
+        position: relative
+        height: 16px
+        span
+            transition: all 0.3s ease 0s
+            top: calc(50% - 1px)
+            left: 0
+            position: absolute
+            width: 100%
+            height: 2px
+            background: #fff
+            &:first-child
+                top: 0
+            &:last-child
+                top: calc(100% - 1px)  
+    &__link
+        letter-spacing: 0.3px
+        font-weight: 300
+        font-size: 12px
+        color: #fff
+        display: block
+        padding: 12px 20px
+        position: relative
+        cursor: pointer
+        @media(min-width: $md2+px)
+            &:hover
+                background-color: #098494
+        &_parent
+            &::after
+                content: ''
+                background: url(../img/icons/menu_arrow.png)
+                width: 14px
+                height: 14px
+                top: 50%
+                position: absolute
+                transform: translate(0px, -50%)
+                right: 10px
+        
+        
+    &__list
+        li
+            border-bottom: 1px solid #1aa7b9

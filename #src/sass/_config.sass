@@ -1,0 +1,150 @@
+//Подключение шрифтов
+@mixin font($font_name, $style, $weight, $file_name )
+    @font-face
+        font-family: $font_name
+        font-style: #{$style}
+        font-weight: #{$weight}
+        font-display: swap
+        src: url("../fonts/#{$file_name}.woff2") format("woff2")
+
+
+@include font('Roboto', normal, 400, 'RobotoRegular')
+@include font('Roboto', normal, 700, 'RobotoBold')
+@include font('Roboto', normal, 300, 'RobotoItalic')
+@include font('Play', normal, 400, 'PlayRegular')
+@include font('UniSansHeavyCaps', normal, 400, 'UniSansHeavyItalicCapsRegular')
+@include font('UniSansHeavyCaps', normal, 700, 'UniSansHeavyCapsBold')
+
+
+
+//default fonts////////////////////////////////////////////////////////////////////////////
+$Roboto: "Roboto", sans-serif // Roboto Font Family
+$font-family: $Roboto
+////////////////////////////////////////////////////////////////////////////////////////
+
+//variables///////////////////////////////////////////////////////
+$minWidth: 320px//минимальна ширина девайса
+$maxWidth: 1400// максимальная ширина макета
+$maxWidthContainer: 1180//calc (1140px + 40px) максимальная ширина контейнера с учетом padding которые мы ему задали
+$md1: $maxWidthContainer + 12
+$md2: 991.98
+$md3: 767.98
+$md4: 479.98
+
+
+
+
+//Адаптивный шрифт
+//SASS Миксин:
+@mixin adaptiv-font($pcSize, $mobSize, $maxSize)
+    $addSize: $pcSize - $mobSize
+    @if $maxSize == 1 
+        font-size: $pcSize + px
+        @media (max-width: #{$maxWidthContainer + px}) 
+            font-size: calc(#{$mobSize + px} + #{$addSize} *((100vw - 320px) / #{$maxWidthContainer - 320}))
+    @else 
+        font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}))
+    
+/////////////////////////////////////////////////////////////////////////
+
+//.wrapper - оболочка//////////////////////////////////////////////////
+.wrapper
+    width: 100%
+    margin: 0 auto
+    overflow: hidden
+    min-height: 100%
+    display: flex
+    flex-direction: column
+    &._loaded
+///////////////////////////////////////////////////////
+
+//main grid  основная сетка////////////////////////////////////////////////////////////////////////////////
+._container
+    max-width: $maxWidthContainer + px
+    margin: 0 auto
+    padding: 0 20px
+    @media (max-width: $md1+px)
+        max-width: 970px
+    @media (max-width: $md2+px)
+        max-width: 750px
+    @media (max-width: $md3+px)
+        max-width: none
+        padding: 0 10px
+
+//main grid///////////////////////////////////////////////////////////////////////////////////////////
+
+//normalize css
+*
+    padding: 0
+    margin: 0
+    border: 0
+
+*, *:before, *:after
+    box-sizing: border-box
+
+input, textarea
+    outline: none
+    &:focus:required:invalid
+        border-color: red
+    &:required:valid
+        border-color: green
+
+a:focus,a:active
+    outline: none
+aside, nav, footer, header, section, article
+    display: block
+
+html, body
+    height: 100%
+    min-width: 320px
+
+body
+    line-height: 1
+    color: #000
+    font-size: 14px
+    font-family: $font-family
+    -moz-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%
+    &.lock
+        overflow: hidden
+
+input, button, textarea
+    font-family: $font-family
+
+input::-ms-clear
+    display: none
+
+button
+    cursor:
+
+button::-moz-focus-inner
+    padding: 0
+    border: 0
+
+a, a:visited
+    text-decoration: none
+    cursor: pointer
+
+a:hover
+    text-decoration: none
+    cursor:
+
+ul li
+    list-style: none
+
+img
+    vertical-align: top
+
+h1,h2,h3,h4,h5,h6
+    font-weight: inherit
+    font-size: inherit
+
+//-webkit-overflow-scrolling: touch
+//animation-play-state:paused !important
+
+
+
+//     //font-size: calc(24px + 16 * ((100vw - 320px) / (1280 - 320)));
+
+
